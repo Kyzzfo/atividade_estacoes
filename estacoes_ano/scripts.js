@@ -46,21 +46,27 @@ const input_mes = document.getElementById('i_mes')
 const label_estacao = document.getElementById('nome_estacao')
 
 function calcula_estacao(){
+  const cores = document.getElementsByClassName("cor")
+  
   const num_mes = parseInt(input_mes.value, 10)
   labelmes.textContent = "Estamos em " + mes[num_mes-1]
-
   
   if (num_mes == 12 || num_mes<=2){
     label_estacao.textContent = estacao_ano[1]
+    coresEstacao(cores, verao)
+
   }
   else if(3<=num_mes && num_mes<=5){
-    label_estacao.textContent = estacao_ano[2]  
+    label_estacao.textContent = estacao_ano[2]
+    coresEstacao(cores, primavera)
   }
   else if(6<=num_mes && num_mes<=8){
-    label_estacao.textContent = estacao_ano[3]  
+    label_estacao.textContent = estacao_ano[3]
+    coresEstacao(cores, inverno)
   }
   else if(9<=num_mes && num_mes<=11){
-    label_estacao.textContent = estacao_ano[0]  
+    label_estacao.textContent = estacao_ano[0]
+    coresEstacao(cores, outono)  
   }
 
   clearInterval(intervalo);
@@ -80,16 +86,11 @@ const intervalo = setInterval(coresEstacao, 0);
 let num_cor;
 
 
-function coresEstacao(estacao){
-
-    // Os elementos HTML da classe "cor" devem mostrar 
-    // os nomes das cores da estação do ano calculada 
-    // na função calcula_estacao() 
-    // e mudar o backgroundColor para estas cores.
-
-    // O background da elemento HTML associado à classe estacoes
-    // deverá alternar entre estas cores. 
-     
+function coresEstacao(tags, elements){
+    for (let i = 0; i < tags.length && i < verao.length; i++) {
+      tags[i].style.backgroundColor = elements[i].cor;
+      tags[i].innerHTML = elements[i].nome;
+    }   
 }
 
 
