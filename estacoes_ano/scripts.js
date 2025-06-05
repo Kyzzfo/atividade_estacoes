@@ -1,9 +1,9 @@
 const mes = [
-  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
-const estacao_ano = ["primavera", "verão", "outono", "inverno"];
+const estacao_ano = ["Primavera", "Verão", "Outono", "Inverno"];
 
 const primavera = [
   { "nome": "Rosa chá", "cor": "rgb(255, 182, 193)" },
@@ -21,7 +21,6 @@ const verao = [
     { nome: 'Coral', cor: 'rgb(255, 127, 80)' }    
 ];
 
-  
 const outono = [
     { nome: 'Amarelo suave', cor: 'rgb(255, 239, 184)' },
     { nome: 'Bege claro', cor: 'rgb(210, 180, 140)' },
@@ -42,9 +41,29 @@ const inverno = [
 let i_estacao = 0;
 let vet_estacao = primavera; // recebe o array
 
-function calcula_estacao()
-{
-    clearInterval(intervalo);
+const labelmes = document.getElementById('nome_mes')
+const input_mes = document.getElementById('i_mes') 
+const label_estacao = document.getElementById('nome_estacao')
+
+function calcula_estacao(){
+  const num_mes = parseInt(input_mes.value, 10)
+  labelmes.textContent = "Estamos em " + mes[num_mes-1]
+
+  
+  if (num_mes == 12 || num_mes<=2){
+    label_estacao.textContent = estacao_ano[1]
+  }
+  else if(3<=num_mes && num_mes<=5){
+    label_estacao.textContent = estacao_ano[2]  
+  }
+  else if(6<=num_mes && num_mes<=8){
+    label_estacao.textContent = estacao_ano[3]  
+  }
+  else if(9<=num_mes && num_mes<=11){
+    label_estacao.textContent = estacao_ano[0]  
+  }
+
+  clearInterval(intervalo);
 
     // aqui recebe-se o número do mês informado pelo usuário
     // informa-se o nome do mês correspondente
@@ -61,7 +80,7 @@ const intervalo = setInterval(coresEstacao, 0);
 let num_cor;
 
 
-function coresEstacao(){
+function coresEstacao(estacao){
 
     // Os elementos HTML da classe "cor" devem mostrar 
     // os nomes das cores da estação do ano calculada 
@@ -73,5 +92,7 @@ function coresEstacao(){
      
 }
 
+
+calcula_estacao()
 
 clearInterval(intervalo);
